@@ -1,0 +1,8 @@
+{
+  "name": "regai",
+  "version": "0.1.0",
+  "description": "Research Vietnamese law in plain language. Bundles the regai CLI binaries and a research skill; corpus updates from a remote.",
+  "author": {
+    "name": "Infina Legal Tools"
+  }
+}

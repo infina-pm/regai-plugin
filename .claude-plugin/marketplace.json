@@ -1,0 +1,13 @@
+{
+  "name": "regai",
+  "owner": {
+    "name": "Infina Legal Tools"
+  },
+  "plugins": [
+    {
+      "name": "regai",
+      "source": "./",
+      "description": "Research Vietnamese law in plain language (LLM-free retrieval over a curated legal corpus)."
+    }
+  ]
+}
