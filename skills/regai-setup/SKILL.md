@@ -9,6 +9,12 @@ Goal: get the user's personal regai token into Claude Code's settings so the
 regai MCP tools authenticate. The user is likely non-technical — do the file
 edit for them; do not ask them to edit JSON by hand.
 
+**The token is optional.** regai works anonymously without one, so if you can't
+write `~/.claude/settings.json` (e.g. a web/Cowork session where that file is
+outside the sandbox), tell the user they can use regai right away with no token
+— the only thing a token adds is per-user attribution. A token is still worth
+setting in environments where you *can* write the settings file.
+
 ## Step 1 — Find the settings file and the regai plugin entry
 
 Read `~/.claude/settings.json` (expand `~` to the user's home). If it does not

@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "regai",
   "displayName": "regai — Vietnamese Legal Research",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Research Vietnamese law in plain language over a hosted, LLM-free retrieval service exposing 6 MCP tools (search, get_article, get_document, list_related, check_in_force, deep_research).",
   "author": {
     "name": "Infina Legal Tools"
@@ -25,8 +25,8 @@
   "userConfig": {
     "api_token": {
       "type": "string",
-      "title": "regai API token",
-      "description": "Your personal regai token (a UUID the maintainer gives you). Run /regai-setup and Claude will fill this in for you, or set it via /plugin → Configure options."
+      "title": "regai API token (optional)",
+      "description": "Optional. Leave blank to use regai anonymously — the tools work without a token. Provide your personal token (a UUID the maintainer gives you) for per-user attribution: run /regai-setup and Claude will fill it in, or set it via /plugin → Configure options."
     }
   }
 }
