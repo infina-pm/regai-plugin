@@ -1,8 +1,33 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "regai",
-  "version": "0.1.0",
-  "description": "Research Vietnamese law in plain language. Bundles the regai CLI binaries and a research skill; corpus updates from a remote.",
+  "displayName": "regai — Vietnamese Legal Research",
+  "version": "0.4.0",
+  "description": "Research Vietnamese law in plain language over a hosted, LLM-free retrieval service exposing 6 MCP tools (search, get_article, get_document, list_related, check_in_force, deep_research).",
   "author": {
     "name": "Infina Legal Tools"
+  },
+  "keywords": [
+    "vietnamese-law",
+    "legal-research",
+    "retrieval",
+    "mcp"
+  ],
+  "mcpServers": {
+    "regai": {
+      "type": "http",
+      "url": "https://regai-dn2n.onrender.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${user_config.api_token}"
+      }
+    }
+  },
+  "userConfig": {
+    "api_token": {
+      "type": "string",
+      "title": "regai API token",
+      "description": "Bearer token for the hosted regai service. Ask the regai maintainer for a token. (For a local dev server started without REGAI_MCP_TOKEN any non-empty value works — to point at a local server, edit mcpServers.url in this plugin's plugin.json.)",
+      "sensitive": true
+    }
   }
 }
