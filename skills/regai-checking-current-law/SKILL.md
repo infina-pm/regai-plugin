@@ -1,5 +1,5 @@
 ---
-name: researching-vietnamese-law
+name: regai-checking-current-law
 description: Use when the user asks anything about Vietnamese law — conditions/procedures for something ("điều kiện chào bán chứng khoán", "what do I need to issue shares?"), whether a document is still valid ("Nghị định 58/2012 còn hiệu lực không?", "is decree X still in force?"), which Nghị định/Thông tư implements a Luật, or to quote a specific Điều. Drives the regai retrieval tools and the cite-correctly research loop.
 ---
 
@@ -16,7 +16,7 @@ The corpus is curated and grows over time as documents are added from the remote
 is outside the *current* set — say so plainly rather than guessing at its contents,
 and never answer Vietnamese law from memory. To establish what the corpus actually
 holds (e.g. before telling a user a topic is out of scope), use the
-**checking-legal-coverage** skill.
+**regai-listing-coverage** skill.
 
 ## Core principle
 

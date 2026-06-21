@@ -1,5 +1,5 @@
 ---
-name: checking-legal-coverage
+name: regai-listing-coverage
 description: Use when the user asks what the regai knowledge base covers, whether a particular law/topic/document is in it ("do you have labor law?", "is Nghị định 13/2023 in the corpus?", "can you research tax?"), or before telling a user that a topic is out of scope. Determines coverage by probing the live corpus, never from memory — the corpus grows over time as documents are added from the remote.
 ---
 
@@ -14,7 +14,7 @@ live corpus** and reading what comes back. Use this before answering "what can I
 or before declaring any topic out of scope.
 
 Use the `regai` MCP tools the same way as the research tools — see
-`../researching-vietnamese-law/reference/tools.md` for argument signatures and JSON shapes.
+`../regai-checking-current-law/reference/tools.md` for argument signatures and JSON shapes.
 
 ## To check whether a specific topic or document is covered
 
@@ -22,7 +22,7 @@ Use the `regai` MCP tools the same way as the research tools — see
    `get_document(id=<id>)`). A `not_found` error means it's outside the current
    corpus; a result means it's in.
 2. **A topic/area** → `search(query="<canonical terms for the topic>")` (see
-   `../researching-vietnamese-law/reference/query-craft.md` for term craft).
+   `../regai-checking-current-law/reference/query-craft.md` for term craft).
    - Substantive in-force hits → the area is covered; name it from the returned docs.
    - No hits, or only weak/expired/off-topic hits → likely **not** covered. Try one or
      two alternate canonical phrasings before concluding, then say it's not in the

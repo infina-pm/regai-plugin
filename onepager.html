@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>regai — your in-house Vietnamese legal consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #15233b;
+    --ink-soft: #44536b;
+    --ink-faint: #6b7892;
+    --paper: #fbf9f4;
+    --card: #ffffff;
+    --line: #e7e2d6;
+    --navy: #14254a;
+    --navy-2: #1d3563;
+    --gold: #b8893b;
+    --gold-soft: #e8d4a8;
+    --accent: #2f6f6a;
+    --accent-soft: #d6e7e3;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(20,37,74,.04), 0 12px 32px rgba(20,37,74,.07);
+    --shadow-lg: 0 2px 6px rgba(20,37,74,.06), 0 24px 60px rgba(20,37,74,.13);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+  h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; line-height: 1.12; letter-spacing: -0.01em; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(1200px 600px at 78% -10%, rgba(184,137,59,.20), transparent 55%),
+      radial-gradient(900px 500px at 8% 110%, rgba(47,111,106,.22), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #f4f1e9;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 100% 34px;
+    opacity: .5; pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 76px; }
+  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
+  .brand .mark {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, var(--gold) 0%, #d9a958 100%);
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; color: var(--navy);
+    box-shadow: 0 6px 18px rgba(184,137,59,.35);
+  }
+  .brand .name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+  .brand .by { margin-left: auto; font-size: 13px; color: rgba(244,241,233,.62); letter-spacing: .02em; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold-soft);
+    padding: 7px 14px; border: 1px solid rgba(232,212,168,.28); border-radius: 100px;
+    background: rgba(232,212,168,.06); margin-bottom: 26px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold-soft); }
+  .hero h1 { font-size: clamp(34px, 5.2vw, 58px); max-width: 16ch; margin-bottom: 22px; color: #fff; }
+  .hero h1 em { font-style: normal; color: var(--gold-soft); }
+  .hero .lede { font-size: clamp(17px, 2vw, 20px); color: rgba(244,241,233,.84); max-width: 60ch; }
+  .cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    padding: 13px 22px; border-radius: 11px; transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(184,137,59,.32); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(184,137,59,.42); }
+  .btn-ghost { color: #f4f1e9; border: 1px solid rgba(244,241,233,.28); }
+  .btn-ghost:hover { background: rgba(244,241,233,.08); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; }
+  .section-label {
+    font-size: 12.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  h2 { font-size: clamp(26px, 3.4vw, 38px); color: var(--ink); margin-bottom: 18px; }
+  .section-intro { font-size: 18px; color: var(--ink-soft); max-width: 64ch; }
+
+  /* problem / solution band */
+  .band { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 8px; }
+  .panel {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 30px 32px;
+    background: var(--paper);
+  }
+  .panel.warn { background: linear-gradient(180deg, #fdf6f2, #fbf3ee); border-color: #f0dcd0; }
+  .panel.good { background: linear-gradient(180deg, #f3f8f6, #eef6f3); border-color: #cfe6df; }
+  .panel .tag {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700;
+    letter-spacing: .04em; margin-bottom: 14px;
+  }
+  .panel.warn .tag { color: #b5532f; }
+  .panel.good .tag { color: var(--accent); }
+  .panel h3 { font-size: 21px; margin-bottom: 10px; }
+  .panel p { color: var(--ink-soft); font-size: 15.5px; }
+  .panel .cite { margin-top: 14px; font-size: 13.5px; color: var(--ink-faint); }
+  .panel code { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: rgba(20,37,74,.06); padding: 2px 6px; border-radius: 5px; }
+
+  /* feature cards */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 38px; }
+  .feature {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 26px; box-shadow: var(--shadow); transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .feature:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .feature .ic {
+    width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+    margin-bottom: 18px; font-size: 22px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+  .feature:nth-child(2) .ic { background: var(--gold-soft); color: var(--gold); }
+  .feature:nth-child(3) .ic { background: #dfe4f2; color: var(--navy-2); }
+  .feature h3 { font-size: 20px; margin-bottom: 9px; }
+  .feature p { color: var(--ink-soft); font-size: 15px; }
+
+  /* pipeline */
+  .pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 40px; position: relative; }
+  .step { padding: 0 26px; position: relative; }
+  .step:not(:last-child)::after {
+    content: "→"; position: absolute; right: -11px; top: 6px; color: var(--gold); font-size: 22px; font-weight: 700;
+  }
+  .step .n {
+    font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: var(--gold);
+    width: 34px; height: 34px; border: 1.5px solid var(--gold-soft); border-radius: 50%;
+    display: grid; place-items: center; margin-bottom: 16px;
+  }
+  .step h3 { font-size: 19px; margin-bottom: 8px; }
+  .step .path { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--accent); margin-bottom: 8px; display: block; }
+  .step p { font-size: 14.5px; color: var(--ink-soft); }
+  .pipeline-note {
+    margin-top: 34px; text-align: center; font-size: 14.5px; color: var(--ink-faint);
+    border-top: 1px dashed var(--line); padding-top: 22px;
+  }
+  .pipeline-note strong { color: var(--ink); }
+
+  /* tools table */
+  .tools { margin-top: 36px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .tool-row { display: grid; grid-template-columns: 230px 1fr; gap: 0; border-bottom: 1px solid var(--line); background: var(--card); }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-row:nth-child(even) { background: #fcfbf7; }
+  .tool-row .t {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: var(--navy-2);
+    padding: 17px 24px; border-right: 1px solid var(--line); display: flex; align-items: center; gap: 10px;
+  }
+  .tool-row .t::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--gold); flex: none; }
+  .tool-row .d { padding: 17px 24px; color: var(--ink-soft); font-size: 15px; display: flex; align-items: center; }
+
+  /* ask grid */
+  .ask { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px; }
+  .ask-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+  .ask-card h3 { font-size: 18px; margin-bottom: 6px; display: flex; align-items: center; gap: 9px; }
+  .ask-card .flow { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 18px; letter-spacing: .02em; }
+  .q { display: block; padding: 11px 15px; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; font-size: 14.5px; color: var(--ink); }
+  .q:last-child { margin-bottom: 0; }
+  .q .lang { color: var(--ink-faint); font-style: italic; }
+
+  /* install / coverage */
+  .grid-2 { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: start; }
+  .terminal { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid #0d1830; }
+  .terminal .bar { background: #0d1830; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
+  .terminal .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .terminal .bar .r { background: #ff5f56; } .terminal .bar .y { background: #ffbd2e; } .terminal .bar .g { background: #27c93f; }
+  .terminal .bar span { margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8b97b3; }
+  .terminal pre {
+    background: #14254a; color: #e6ecf7; margin: 0; padding: 22px 22px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13.5px; line-height: 1.9; overflow-x: auto;
+  }
+  .terminal .cmd { color: #f4f1e9; }
+  .terminal .pr { color: var(--gold-soft); }
+  .terminal .cm { color: #7f8db0; }
+  .info-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+  .info-card h3 { font-size: 19px; margin-bottom: 12px; }
+  .info-card p { color: var(--ink-soft); font-size: 15px; margin-bottom: 14px; }
+  .info-card p:last-child { margin-bottom: 0; }
+  .pill { display: inline-block; font-size: 13px; background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 100px; font-weight: 600; margin: 3px 4px 3px 0; }
+
+  /* footer */
+  footer { background: var(--navy); color: rgba(244,241,233,.7); text-align: center; padding: 44px 0; }
+  footer .tagline { font-family: 'Fraunces', serif; font-size: 20px; color: #f4f1e9; margin-bottom: 8px; }
+  footer .small { font-size: 13.5px; }
+
+  @media (max-width: 820px) {
+    .twocol, .features, .ask, .grid-2 { grid-template-columns: 1fr; }
+    .pipeline { grid-template-columns: 1fr; gap: 28px; }
+    .step { padding: 0; } .step:not(:last-child)::after { content: "↓"; right: auto; left: 6px; top: auto; bottom: -24px; }
+    .tool-row { grid-template-columns: 1fr; } .tool-row .t { border-right: none; border-bottom: 1px solid var(--line); }
+    .brand .by { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <div class="mark">r</div>
+      <div class="name">regai</div>
+      <div class="by">by Infina Legal Tools</div>
+    </div>
+    <div class="eyebrow"><span class="dot"></span> Vietnamese legal AI you can trust</div>
+    <h1>Your in-house Vietnamese legal consultant — <em>cited every time.</em></h1>
+    <p class="lede">Vietnamese legal work you can actually rely on: answers grounded in a curated, always-current corpus of Vietnamese law — not a model's training data. Every claim cited, in-force status checked, related decrees and circulars enforced.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#install">Get the plugin →</a>
+      <a class="btn btn-ghost" href="#how">See how it works</a>
+    </div>
+  </div>
+</header>
+
+<!-- Problem / Solution -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-label">The problem &amp; the fix</div>
+    <h2>A general AI guesses at the law. regai reads it.</h2>
+    <div class="twocol">
+      <div class="panel warn">
+        <span class="tag">✕ &nbsp;General AI assistant</span>
+        <h3>Answers from memory</h3>
+        <p>Replies from whatever it half-remembers from training — <strong>outdated, unsourced, and often confidently wrong.</strong> It can't tell you whether a Nghị định was repealed last year, what replaced it, or which Thông tư actually governs your procedure. For real legal work, that's a liability.</p>
+      </div>
+      <div class="panel good">
+        <span class="tag">✓ &nbsp;regai</span>
+        <h3>Answers from the law as it stands</h3>
+        <p>Grounded in a corpus built specifically for Vietnamese law and kept current. It enforces what a careful lawyer checks — <strong>is this still in force, what superseded it, which related Nghị định / Thông tư apply</strong> — and cites every claim.</p>
+        <p class="cite">Every answer carries <code>số hiệu</code> · <code>Điều</code> · <code>tình trạng</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why different -->
+<section>
+  <div class="wrap">
+    <div class="section-label">Why it's different</div>
+    <h2>Built like an associate, not a chatbot</h2>
+    <p class="section-intro">Three things set regai apart from asking a general model a legal question.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="ic">⚖️</div>
+        <h3>Right, and current</h3>
+        <p>Grounded in a corpus maintained for Vietnamese law — not stale training data. It reads the law as it stands today and tells you when something has been repealed or replaced.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">📋</div>
+        <h3>Comes with the playbook</h3>
+        <p>Built-in workflows and templates for real work — drafting, contract &amp; NDA review, legal memos, compliance mapping — so it performs from the first request.</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🌱</div>
+        <h3>Becomes yours</h3>
+        <p>Tailor it to your industry and house style. It compounds what it learns across matters into a local store you own — remembering your context, parties, and preferences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="section-label">How it works</div>
+    <h2>Scrape → index → retrieve — deterministically</h2>
+    <p class="section-intro">An LLM agent drives a small set of read-only tools over the corpus. The legal reasoning itself is deterministic — no model decides the law at query time.</p>
+    <div class="pipeline">
+      <div class="step">
+        <div class="n">1</div>
+        <span class="path">vbpl.vn → vault</span>
+        <h3>Ingest</h3>
+        <p>Scrape official legislation, following in-force legal relations — a Luật pulls in its implementing Nghị định / Thông tư.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <span class="path">vault → index</span>
+        <h3>Build</h3>
+        <p>Index the corpus for hybrid full-text + vector search, hosted centrally and kept current.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <span class="path">index → answer</span>
+        <h3>Retrieve</h3>
+        <p>The agent queries 6 read-only tools, follows the regulation chain, verifies in-force status, and cites sources.</p>
+      </div>
+    </div>
+    <p class="pipeline-note">The corpus is hosted centrally and kept current — <strong>nothing to download or build.</strong></p>
+  </div>
+</section>
+
+<!-- Tools -->
+<section>
+  <div class="wrap">
+    <div class="section-label">The toolkit</div>
+    <h2>6 grounded retrieval tools</h2>
+    <p class="section-intro">Every <code>slug</code> / <code>doc</code> / <code>id</code> accepts either a vault slug or a số hiệu (document number).</p>
+    <div class="tools">
+      <div class="tool-row"><div class="t">search</div><div class="d">Hybrid (full-text + vector) search over articles</div></div>
+      <div class="tool-row"><div class="t">get_article</div><div class="d">Fetch one article's exact text</div></div>
+      <div class="tool-row"><div class="t">get_document</div><div class="d">Fetch a document's metadata + structure</div></div>
+      <div class="tool-row"><div class="t">list_related</div><div class="d">Follow the regulation chain (relations)</div></div>
+      <div class="tool-row"><div class="t">check_in_force</div><div class="d">Resolve in-force status / successor before citing</div></div>
+      <div class="tool-row"><div class="t">deep_research</div><div class="d">Deterministic multi-step research pipeline</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- What you can ask -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-label">In practice</div>
+    <h2>What you can ask</h2>
+    <div class="ask">
+      <div class="ask-card">
+        <h3>💬 Point questions</h3>
+        <div class="flow">ask → cited answer</div>
+        <span class="q">"Điều kiện để [làm việc X] là gì?" <span class="lang">— what are the conditions for [doing X]?</span></span>
+        <span class="q">"Nghị định [số hiệu] còn hiệu lực không?" <span class="lang">— is decree [number] still in force?</span></span>
+        <span class="q">"Which Nghị định / Thông tư implements this Luật?"</span>
+      </div>
+      <div class="ask-card">
+        <h3>🎯 Ship a goal</h3>
+        <div class="flow">plan → approve → execute → deliver</div>
+        <span class="q">"Review this NDA for me."</span>
+        <span class="q">"Draft a mutual NDA between [A] and [B]."</span>
+        <span class="q">"Write a memo on the obligations for [activity]."</span>
+        <span class="q">"Map the compliance obligations for [activity]."</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Install + coverage -->
+<section id="install">
+  <div class="wrap">
+    <div class="section-label">Get started</div>
+    <h2>Two lines in Claude Code</h2>
+    <p class="section-intro">regai ships as a Claude Code plugin — a thin remote-MCP client with no binaries and no secrets.</p>
+    <div class="grid-2" style="margin-top:36px;">
+      <div class="terminal">
+        <div class="bar"><i class="r"></i><i class="y"></i><i class="g"></i><span>claude code</span></div>
+        <pre><span class="cm"># add the marketplace + install</span>
+<span class="pr">&gt;</span> <span class="cmd">/plugin marketplace add infina-pm/regai-plugin</span>
+<span class="pr">&gt;</span> <span class="cmd">/plugin install regai@regai</span>
+
+<span class="cm"># verify the connection</span>
+<span class="pr">&gt;</span> <span class="cmd">/regai-doctor</span></pre>
+      </div>
+      <div class="info-card">
+        <h3>Works anywhere there's MCP</h3>
+        <p>The grounding engine is a standard <strong>MCP</strong> service, so it also runs in any MCP-capable assistant — point the client at the hosted server.</p>
+        <div>
+          <span class="pill">Claude Code</span>
+          <span class="pill">Claude cowork</span>
+          <span class="pill">Codex</span>
+          <span class="pill">Editors</span>
+          <span class="pill">Your own agent</span>
+        </div>
+        <p style="margin-top:16px;">Authentication is optional — use it anonymously, or add a personal token for per-user attribution.</p>
+      </div>
+    </div>
+
+    <div class="info-card" style="margin-top:28px;">
+      <h3>📚 Coverage</h3>
+      <p>The corpus is curated, hosted centrally, and <strong>grows over time</strong> — coverage is expanded remotely, so the same plugin gets broader without any update on your side.</p>
+      <p>Because of that, scope is never asserted from memory. To see what's in scope today, just ask <strong>"what does the regai knowledge base cover?"</strong> or <strong>"is [topic / document] in here?"</strong> — and regai checks the live corpus and tells you.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="tagline">Vietnamese legal answers you can trust, cited every time.</div>
+    <div class="small">regai — built by Infina Legal Tools</div>
+  </div>
+</footer>
+
+</body>
+</html>
