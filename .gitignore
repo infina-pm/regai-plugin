@@ -1,2 +1,5 @@
 .DS_Store
 Thumbs.db
+# Vault is bundled into the published plugin at release time from the repo's live
+# (gitignored) vault/ — never commit a snapshot into the regai source repo.
+/vault/

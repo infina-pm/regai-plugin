@@ -40,7 +40,9 @@ where it is and what to put in `context.md`:
 ```
 
 Seed `context.md` with a short comment telling the user to add their org, parties,
-and standing preferences. Seed `memory/learnings.md` with `# Learnings` only.
+and standing preferences — or, better, hand off to **regai-onboard**, which
+interviews them and writes a populated profile. Seed `memory/learnings.md` with
+`# Learnings` only.
 
 ## The mission loop (summary)
 

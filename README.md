@@ -67,6 +67,10 @@ agent through the same ask → check → ship-a-goal loop.
   agentic research loop (`deep_research` → `check_in_force` → `get_document` →
   `get_article` → `list_related`) in Vietnamese legal tier order. `reference/` holds
   the tool JSON shapes (`tools.md`) and query craft (`query-craft.md`).
+- **`skills/regai-vault-search/`** — the offline counterpart to the above: searches a
+  `vault/` snapshot bundled with the plugin (at `${CLAUDE_PLUGIN_ROOT}/vault/`) using
+  grep + Read, no MCP/network. Same tier-ordered research and in-force resolution, run
+  by hand against the Markdown frontmatter. The snapshot is frozen at release time.
 - **`skills/regai-listing-coverage/`** — determines what the corpus covers by probing
   it live (coverage grows from the remote, never asserted from memory). Answers "what
   can I ask?" / "is topic X in here?".
