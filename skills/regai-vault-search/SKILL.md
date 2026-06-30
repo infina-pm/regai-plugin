@@ -11,11 +11,7 @@ A `vault/` folder of Markdown documents is the source of truth — every ingeste
 document lives there as `<slug>.md`. This skill drives **grep + Read** over those
 files; it works fully offline and needs no MCP connection.
 
-**Where the vault is.** Resolve it once, then use that path everywhere below in place of
-`vault/`:
-- Installed as a plugin → the vault is bundled at `${CLAUDE_PLUGIN_ROOT}/vault/`
-  (the snapshot frozen at the plugin's release; it does not auto-update).
-- Running inside the regai source repo → it's `vault/` in the repo root.
+**Where the vault is.** The vault is bundled alongside this skill at `vault/` (relative to this skill's directory). Use that path everywhere below.
 
 The corpus is whatever that snapshot contains. If a document isn't found, either it was
 never ingested or the snapshot is stale — say so; never answer from memory.
