@@ -2,26 +2,10 @@
 
 Do Vietnamese legal work in plain language, with answers you can actually rely on.
 A general AI assistant answers from whatever it half-remembers from training — often
-outdated, usually unsourced, sometimes simply wrong. regai is built differently:
-
-- **Right, and current.** Every answer is grounded in a corpus built specifically for
-  Vietnamese law and kept up to date — not a model's training data. regai enforces
-  what a careful lawyer checks: whether a document is still in force, what superseded
-  it, and which related Nghị định / Thông tư apply. It reads the law as it stands
-  today and cites it (số hiệu + Điều + tình trạng).
-- **Comes with the playbook.** Built-in workflows and templates for real work —
-  drafting, contract and NDA review, legal memos, compliance mapping — so it performs
-  like an experienced associate from the first request, not a blank chatbot.
-- **Becomes yours.** Tailor it to your industry and house style. It compounds what it
-  learns across matters into a local `.regai/` store you own, growing into a real
-  in-house consultant that remembers your context, parties, and standing preferences.
-
-The corpus (Vietnamese securities law and the documents it connects to, and growing)
-is hosted centrally and kept current — there's nothing to download or build. regai's
-grounding engine is a standard **MCP** service, so it works in any MCP-capable
-assistant — Claude (Code or cowork), Codex, editors, your own agent. This plugin is
-the turnkey Claude Code packaging; to use regai elsewhere, point your MCP client at
-the hosted server (see [Use it in other MCP clients](#use-it-in-other-mcp-clients)).
+outdated, usually unsourced, sometimes simply wrong. regai is built differently: every
+answer is grounded in a curated corpus of Vietnamese law and cited the way a careful
+lawyer cites — số hiệu + Điều + tình trạng — with in-force status and superseding
+documents checked, never guessed.
 
 ## Install
 
@@ -34,78 +18,59 @@ This repo is a single-plugin Claude Code marketplace.
 
 (Or `/plugin marketplace add <path-to-this-repo>` for a local clone.)
 
-On enable, Claude Code prompts you to:
+That's it — the free **`regai-vault-search`** skill works immediately, fully offline.
+No account, no network, no setup.
 
-1. **Approve the remote MCP server** (`regai` over HTTP).
-2. **Enter your `api_token`** — optional. Leave blank to use regai anonymously; provide
-   a token (ask the regai maintainer) for per-user attribution. Run `/regai-setup` and
-   Claude writes the token into your settings for you.
+## Free use — offline legal research over the bundled corpus
 
-Then verify with `/regai-doctor` or just ask: *"check the regai connection."*
+The plugin ships with a snapshot of the regai corpus (`vault/`, ~800+ Vietnamese legal
+documents in Markdown). The **`regai-vault-search`** skill researches it entirely on
+your machine with grep + file reads — no MCP, no network, no API token.
 
-The hosted service is `https://regai-dn2n.onrender.com` (baked into the plugin). To
-point at a local dev server instead, edit `mcpServers.url` in
-`.claude-plugin/plugin.json`.
+### How to use it
 
-## Use it in other MCP clients
+Just ask a Vietnamese-law question in plain language. Claude invokes the skill and
+drives the research loop for you:
 
-This plugin bundles the skills and `/` commands for Claude Code, but the tools
-themselves are plain MCP — usable from any MCP client (Claude cowork, Codex, editors,
-your own agent). Point the client at:
+- **Conditions / procedures** — *"Điều kiện chào bán chứng khoán ra công chúng là gì?"*
+- **Definitions** — *"Tài khoản đảm bảo thanh toán là gì?"*
+- **Is it still valid?** — *"Nghị định 58/2012 còn hiệu lực không?"*
+- **Which rule implements a law** — *"Nghị định nào hướng dẫn Luật Chứng khoán 2019?"*
+- **Quote a specific article** — *"Trích Điều 15 Nghị định 155/2020."*
 
-- **URL:** `https://regai-dn2n.onrender.com/mcp` (HTTP / streamable MCP)
-- **Auth:** `Authorization: Bearer <api_token>` — optional; omit the header to use
-  regai anonymously.
+### What it does under the hood (and why it's reliable)
 
-You get the same six grounded tools. The packaged skills and playbooks are Claude
-Code-specific for now; in other clients you drive the tools directly, or prompt your
-agent through the same ask → check → ship-a-goal loop.
+The skill follows the same discipline a Vietnamese legal researcher would — by hand,
+against the document frontmatter:
 
-## What's in here
+1. **Finds candidates** by keyword across the whole corpus, then reads the actual
+   article text before quoting anything (never answers from a title or from memory).
+2. **Resolves the in-force version.** Before citing any document it checks the
+   succession fields — if a doc has been replaced (`bi_thay_the_boi`), annulled
+   (`bi_bai_bo_boi`), or amended (`bi_sua_doi_bo_sung_boi`), it follows the link to the
+   current document and cites *that*, even when the old one still reads "còn hiệu lực".
+3. **Catches article-level amendments** via the `[!history]` blocks the vault records,
+   so it cites the amended text of an individual Điều, not the superseded original.
+4. **Reads in legal tier order** — Luật (scope) → Nghị định (the conditions and
+   thresholds) → Thông tư (forms, deadlines) — and presents findings the same way.
+5. **Cites everything** as số hiệu + Điều + tình trạng, and says so plainly when the
+   corpus doesn't cover a topic instead of inventing an answer.
 
-- **`skills/regai-checking-current-law/`** — answers point questions by driving the
-  agentic research loop (`deep_research` → `check_in_force` → `get_document` →
-  `get_article` → `list_related`) in Vietnamese legal tier order. `reference/` holds
-  the tool JSON shapes (`tools.md`) and query craft (`query-craft.md`).
-- **`skills/regai-vault-search/`** — the offline counterpart to the above: searches a
-  `vault/` snapshot bundled with the plugin (at `${CLAUDE_PLUGIN_ROOT}/vault/`) using
-  grep + Read, no MCP/network. Same tier-ordered research and in-force resolution, run
-  by hand against the Markdown frontmatter. The snapshot is frozen at release time.
-- **`skills/regai-listing-coverage/`** — determines what the corpus covers by probing
-  it live (coverage grows from the remote, never asserted from memory). Answers "what
-  can I ask?" / "is topic X in here?".
-- **`skills/regai-shipping-goal/`** — the goal-driven legal associate. Plan → approve →
-  execute with checkpoints → deliver → learn. Ships team-baseline `playbooks/` and
-  `templates/`; overlays a per-workspace `.regai/` store for your org context and
-  compounding `memory/learnings.md`.
-- **`skills/regai-setup/`** — `/regai-setup` writes your optional `api_token` into
-  Claude's settings (regai works tokenless, so this is only for per-user attribution).
-- **`commands/regai-doctor.md`** — `/regai-doctor` verifies the MCP connection and
-  corpus reachability.
+The corpus is a **snapshot frozen at the plugin's release** — great for offline,
+reproducible research. For an always-current corpus, see Pro below.
 
-## The 6 tools (exposed over MCP)
+## Pro
 
-| tool | purpose |
-| --- | --- |
-| `search` | hybrid (FTS + vector) search over articles |
-| `get_article` | fetch one article's text |
-| `get_document` | fetch a document's metadata + structure |
-| `list_related` | follow the regulation chain (relations) |
-| `check_in_force` | resolve a document's in-force status / successor |
-| `deep_research` | deterministic multi-step research pipeline |
+Pro connects regai to a hosted, **always-current** corpus and adds the full associate
+workflow — live coverage, in-force resolution against the latest documents, and
+goal-driven drafting/review/memo/compliance playbooks that learn your house style.
 
-All `slug` / `doc` / `id` parameters accept **either** a vault slug (e.g.
-`ND-155-2020`) **or** a số hiệu (e.g. `155/2020/NĐ-CP`).
+Pro features require access from the regai maintainer. Ask your maintainer to enable
+Pro and provide setup details.
 
 ## Try it
 
-Ask:
 - "Điều kiện chào bán chứng khoán ra công chúng là gì?"
+- "Tài khoản đảm bảo thanh toán là gì?"
 - "Nghị định 58/2012 còn hiệu lực không?"
-- "What does the regai knowledge base cover?"
-
-Ship a goal:
-- "Review this NDA for me."
-- "Draft a mutual NDA between [A] and [B]."
-- "Write a memo on the disclosure obligations for a public offering."
-- "Map the compliance obligations for [activity]."
+- "Trích Điều 15 Nghị định 155/2020 cho tôi."
