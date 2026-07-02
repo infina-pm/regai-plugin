@@ -18,24 +18,48 @@ and never answer Vietnamese law from memory. To establish what the corpus actual
 holds (e.g. before telling a user a topic is out of scope), use the
 **regai-listing-coverage** skill.
 
-## Core principle
+## Pick the right entry point first
 
-Start wide, then narrow to verified text:
+`deep_research` is powerful but **slow and heavy** — it builds the whole Luật → Nghị
+định → Thông tư stack and can take minutes. Don't reach for it by reflex. Match the
+tool to the question:
 
-1. **`deep-research`** — entry point for any question; returns the full regulatory
-   stack (Luật → Nghị định → Thông tư) at once.
-2. **`check-in-force`** — before citing *any* document, confirm it's still valid.
-3. **`get-article`** — read the actual Điều text before quoting it.
-4. **`list-related`** — follow the regulation chain (which NĐ/TT implements a Luật).
+| The question is… | Start with | Why |
+|------------------|-----------|-----|
+| **"Is document X still valid?"** (names a specific số hiệu) | `check_in_force` | One lookup answers it; no research needed. |
+| **"Quote / what does Điều N of X say?"** | `get_article` (after `check_in_force`) | You already know the target. |
+| **"Which NĐ/TT implements Luật X?"** | `get_document` + `list_related` | It's a graph walk, not a search. |
+| **A narrow point of law** — one condition, one threshold, one definition | `search` → read hits | A few hits resolve it; cheap and fast. |
+| **A broad, open-ended topic** — *all* conditions/procedures for X, or you don't yet know which documents apply | `deep_research` | You genuinely need the full stack grouped by tier. |
 
-Never quote a `search`/`deep-research` hit title without reading the body, and never
-cite a document you haven't run through `check-in-force`.
+Rule of thumb: if you can name the document or the question fits on one Điều, **skip
+`deep_research`**. Only use it when the answer spans multiple tiers and you don't know
+the documents up front. When unsure, try `search` first — you can always escalate to
+`deep_research` if the hits show the topic is broader than one document.
+
+Then, whichever entry point you used: narrow to verified text.
+
+- **`check_in_force`** — before citing *any* document, confirm it's still valid.
+- **`get_article`** — read the actual Điều text before quoting it.
+- **`list_related`** — follow the regulation chain (which NĐ/TT implements a Luật).
+
+Never quote a `search`/`deep_research` hit title without reading the body, and never
+cite a document you haven't run through `check_in_force`.
 
 → Tool signatures and JSON shapes: **`reference/tools.md`**
 → How to turn a plain question into good search terms: **`reference/query-craft.md`**
 
-## The canonical loop
+## The loops
 
+**Fast path** — narrow question, or you already know the document:
+```
+1. search(query="...")  (or straight to check_in_force if the số hiệu is given)
+2. check_in_force(slug=...)              → skip, or follow in_force_slug if superseded
+3. get_article(doc=..., dieu=N)          → read the text before quoting
+4. an article cites another doc? → get_document(id=<số hiệu>) to resolve
+```
+
+**Full path** — broad topic, documents unknown; only when the fast path isn't enough:
 ```
 1. deep_research(question="...")         → which documents & tiers are relevant
 2. for each relevant document:
@@ -75,7 +99,7 @@ Always include **số hiệu + Điều number + tình trạng** (in force / expi
 | Quoting a search hit's title without the body | Call `get-article` first |
 | Citing an expired document | Call `check-in-force`; cite `in_force_slug` instead |
 | Treating empty `layers["luat"]` as "no law applies" | A Luật may govern without matching text; confirm with `search` |
-| Jumping to `search` before `deep-research` | `deep-research` gives the whole stack — start there |
+| Reaching for `deep_research` on a narrow lookup | It's slow — use `search`/`check_in_force`/`get_article`; reserve `deep_research` for broad, multi-tier topics (see routing table) |
 
 ## When the tools won't run
 
