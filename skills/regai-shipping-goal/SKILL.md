@@ -1,6 +1,6 @@
 ---
 name: regai-shipping-goal
-description: Use when the user gives a multi-step legal GOAL to carry to completion — "draft an NDA / service contract", "review this contract for risks", "write a legal memo on X", "build a compliance process". Plans the work, gets approval, then executes like a legal associate with checkpoints, grounding every legal claim in the regai corpus and compounding what it learns across sessions. For one-off questions about what the law says, use regai-checking-current-law instead.
+description: Use when the user gives a multi-step legal GOAL to carry to completion — "draft an NDA / service contract", "review this contract for risks", "review this product proposal", "write a legal memo on X", "build a compliance process". Plans the work, gets approval, then executes like a legal associate with checkpoints, grounding every legal claim in the regai corpus and compounding what it learns across sessions. For one-off questions about what the law says, use regai-checking-current-law instead.
 ---
 
 # Shipping a legal goal with regai
@@ -64,6 +64,7 @@ interviews them and writes a populated profile. Seed `memory/learnings.md` with
 - `playbooks/nda-review.md`
 - `playbooks/legal-memo.md`
 - `playbooks/research-compliance.md`
+- `playbooks/proposal-review.md`
 
 Mission types without a playbook (e.g. reviewing a model, building operations) run
 on the generic structure until a playbook is added.
