@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>regai — your in-house Vietnamese legal consultant</title>
+<link rel="icon" href="icon.png" type="image/png" />
+<link rel="apple-touch-icon" href="icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -56,15 +58,8 @@
     opacity: .5; pointer-events: none;
   }
   .hero .wrap { position: relative; z-index: 1; padding-top: 60px; padding-bottom: 76px; }
-  .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 56px; }
-  .brand .mark {
-    width: 40px; height: 40px; border-radius: 11px;
-    background: linear-gradient(135deg, var(--gold) 0%, #d9a958 100%);
-    display: grid; place-items: center;
-    font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; color: var(--navy);
-    box-shadow: 0 6px 18px rgba(184,137,59,.35);
-  }
-  .brand .name { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+  .brand { display: flex; align-items: center; gap: 16px; margin-bottom: 56px; }
+  .brand .lockup { height: 52px; width: auto; display: block; }
   .brand .by { margin-left: auto; font-size: 13px; color: rgba(244,241,233,.62); letter-spacing: .02em; }
 
   .eyebrow {
@@ -198,6 +193,7 @@
 
   /* footer */
   footer { background: var(--navy); color: rgba(244,241,233,.7); text-align: center; padding: 44px 0; }
+  footer .mark { width: 48px; height: 48px; border-radius: 12px; display: block; margin: 0 auto 16px; }
   footer .tagline { font-family: 'Fraunces', serif; font-size: 20px; color: #f4f1e9; margin-bottom: 8px; }
   footer .small { font-size: 13.5px; }
 
@@ -215,8 +211,7 @@
 <header class="hero">
   <div class="wrap">
     <div class="brand">
-      <div class="mark">r</div>
-      <div class="name">regai</div>
+      <img class="lockup" src="wordmark.png" alt="regai" />
       <div class="by">by Infina Legal Tools</div>
     </div>
     <div class="eyebrow"><span class="dot"></span> Vietnamese legal AI you can trust</div>
@@ -388,6 +383,7 @@
 
 <footer>
   <div class="wrap">
+    <img class="mark" src="icon.png" alt="regai" />
     <div class="tagline">Vietnamese legal answers you can trust, cited every time.</div>
     <div class="small">regai — built by Infina Legal Tools</div>
   </div>

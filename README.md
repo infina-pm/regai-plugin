@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="wordmark.png" alt="regai" width="420" />
+</p>
+
 # regai — your in-house Vietnamese legal consultant (Claude Code plugin)
 
 Do Vietnamese legal work in plain language, with answers you can actually rely on.

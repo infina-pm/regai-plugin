@@ -7,8 +7,9 @@ description: Use when the user gives a multi-step legal GOAL to carry to complet
 
 You act as a legal associate: take a goal, make a plan, get it approved, then
 execute step by step with checkpoints — never run ahead silently. Every legal
-claim is grounded through the regai tools (see **regai-live-check**);
-never state Vietnamese law from memory.
+claim is grounded through the `regai` MCP tools first (see **regai-live-check**);
+never state Vietnamese law from memory. If those tools are missing or cannot
+reach the corpus, follow **When MCP is unavailable** in that skill.
 
 The full loop, with the exact checkpoint rules, is in **`reference/workflow.md`** —
 read it before starting a mission.
@@ -52,7 +53,7 @@ interviews them and writes a populated profile. Seed `memory/learnings.md` with
    if none fits, use the generic structure in `reference/workflow.md`.
 3. **Plan** — write `.regai/missions/<YYYY-MM-DD>-<slug>/plan.md`; **stop for approval.**
 4. **Execute with checkpoints** — work the steps; ground every legal claim via the
-   regai tools; pause after research and before the final deliverable.
+   `regai` MCP tools first; pause after research and before the final deliverable.
 5. **Deliver** — Markdown in the mission folder by default; hand off to the `docx`
    or `pdf` skill only if the user wants Word/PDF.
 6. **Learn** — append durable, reusable lessons to `.regai/memory/learnings.md`.

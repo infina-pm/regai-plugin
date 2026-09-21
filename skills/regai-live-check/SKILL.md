@@ -102,7 +102,10 @@ Always include **số hiệu + Điều number + tình trạng** (in force / expi
 | Treating empty `layers["luat"]` as "no law applies" | A Luật may govern without matching text; confirm with `search` |
 | Reaching for `deep_research` on a narrow lookup | It's slow — use `search`/`check_in_force`/`get_article`; reserve `deep_research` for broad, multi-tier topics (see routing table) |
 
-## When the tools won't run
+## When MCP is unavailable
 
-If a tool can't reach the corpus, run `/regai-doctor` to check the connection, then
-retry. If it still fails, tell the user — do **not** fall back to answering from memory.
+Call the `regai` MCP tools first. If they are missing from this session or a call
+cannot reach the corpus, tell the user the live source is unreachable and suggest
+they continue with the **regai-vault-search** skill (bundled vault snapshot,
+offline). Wait for them to confirm before switching. `/regai-doctor` can diagnose
+the connection.

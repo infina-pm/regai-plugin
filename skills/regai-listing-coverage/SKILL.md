@@ -13,7 +13,7 @@ catalog/stats tool among the six; coverage is established empirically by **probi
 live corpus** and reading what comes back. Use this before answering "what can I ask?"
 or before declaring any topic out of scope.
 
-Use the `regai` MCP tools the same way as the research tools — see
+Use the `regai` MCP tools first, the same way as the research tools — see
 `../regai-live-check/reference/tools.md` for argument signatures and JSON shapes.
 
 ## To check whether a specific topic or document is covered
@@ -48,5 +48,5 @@ There is no list-everything call, so build the picture from probes:
   not from assumptions.
 - If a topic isn't found: say it's outside the *current* corpus and that coverage is
   expanded centrally over time — don't speculate about contents you couldn't retrieve.
-- If probes return nothing at all, the corpus may be unreachable — run `/regai-doctor`
-  to check the connection before concluding it's empty.
+- If the MCP tools are missing or a probe cannot reach the corpus, follow
+  **When MCP is unavailable** in `../regai-live-check/SKILL.md`.

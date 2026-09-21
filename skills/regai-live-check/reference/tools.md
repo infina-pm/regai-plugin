@@ -13,8 +13,7 @@ them directly as tools; the user never types anything. The 6 tools are:
 All `doc` / `id` / `slug` arguments accept **either** a vault slug
 (e.g. `Luat-Chung-khoan-2019`) **or** a số hiệu (e.g. `155/2020/NĐ-CP`).
 
-If the tools are unavailable, the regai MCP server is not connected — run
-`/regai-doctor`.
+If the tools are unavailable, follow **When MCP is unavailable** in `../SKILL.md`.
 
 ## `deep_research` — layered topic research (entry point)
 
