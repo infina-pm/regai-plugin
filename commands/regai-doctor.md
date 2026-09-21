@@ -11,8 +11,8 @@ Verify the regai MCP service is connected and answering.
      `https://psvpergdfbqzsagaacpz.supabase.co/functions/v1/mcp`. Confirm the
      plugin is enabled and the server was approved (per-server approval prompt
      at enable time).
-   - The hosted server is a public Supabase Edge Function. A token is optional
-     (attribution only).
+   - The hosted server is a public Supabase Edge Function. The plugin connects
+     anonymously.
 
 2. If the tools ARE available, call `check_in_force` with a known document
    (`slug: "54/2019/QH14"`). Expected: a JSON object with `tinh_trang` and
