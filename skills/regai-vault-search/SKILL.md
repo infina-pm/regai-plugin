@@ -1,6 +1,6 @@
 ---
 name: regai-vault-search
-description: Use when the user asks anything about Vietnamese law and you want to search the local vault/ folder directly (offline, no MCP/Supabase). Same research goals as regai-checking-current-law but uses grep/Read over vault/ instead of the remote tools.
+description: Use when the user asks anything about Vietnamese law and you want to search the local vault/ folder directly (offline, no MCP/Supabase). Same research goals as regai-live-check but uses grep/Read over vault/ instead of the remote tools.
 ---
 
 # Researching Vietnamese Law via Local Vault

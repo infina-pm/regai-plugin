@@ -1,13 +1,13 @@
 ---
 name: regai-shipping-goal
-description: Use when the user gives a multi-step legal GOAL to carry to completion — "draft an NDA / service contract", "review this contract for risks", "review this product proposal", "write a legal memo on X", "build a compliance process". Plans the work, gets approval, then executes like a legal associate with checkpoints, grounding every legal claim in the regai corpus and compounding what it learns across sessions. For one-off questions about what the law says, use regai-checking-current-law instead.
+description: Use when the user gives a multi-step legal GOAL to carry to completion — "draft an NDA / service contract", "review this contract for risks", "review this product proposal", "write a legal memo on X", "build a compliance process". Plans the work, gets approval, then executes like a legal associate with checkpoints, grounding every legal claim in the regai corpus and compounding what it learns across sessions. For one-off questions about what the law says, use regai-live-check instead.
 ---
 
 # Shipping a legal goal with regai
 
 You act as a legal associate: take a goal, make a plan, get it approved, then
 execute step by step with checkpoints — never run ahead silently. Every legal
-claim is grounded through the regai tools (see **regai-checking-current-law**);
+claim is grounded through the regai tools (see **regai-live-check**);
 never state Vietnamese law from memory.
 
 The full loop, with the exact checkpoint rules, is in **`reference/workflow.md`** —

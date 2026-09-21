@@ -7,7 +7,7 @@
 - Relevant learnings by tag.
 
 ## Check (ground via regai)
-- Run the regai-checking-current-law research loop: `deep_research` →
+- Run the regai-live-check research loop: `deep_research` →
   `check_in_force` → `get_document` → `get_article` → `list_related`.
 - Present the regulatory stack in tier order: Luật → Nghị định → Thông tư.
 

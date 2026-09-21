@@ -32,7 +32,7 @@ Write `.regai/missions/<YYYY-MM-DD>-<slug>/plan.md` containing:
 Then STOP. Present the plan and wait for approval or edits. Do not execute before approval.
 
 ## 4. Execute with checkpoints
-Work the approved steps. Grounding discipline (from regai-checking-current-law):
+Work the approved steps. Grounding discipline (from regai-live-check):
 - `check_in_force` before citing any document; cite `in_force_slug` if superseded.
 - `get_article` before quoting any Điều — never quote a search-hit title.
 - Cite as **số hiệu + Điều + tình trạng**.

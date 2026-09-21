@@ -14,7 +14,7 @@ live corpus** and reading what comes back. Use this before answering "what can I
 or before declaring any topic out of scope.
 
 Use the `regai` MCP tools the same way as the research tools — see
-`../regai-checking-current-law/reference/tools.md` for argument signatures and JSON shapes.
+`../regai-live-check/reference/tools.md` for argument signatures and JSON shapes.
 
 ## To check whether a specific topic or document is covered
 
@@ -22,7 +22,7 @@ Use the `regai` MCP tools the same way as the research tools — see
    `get_document(id=<id>)`). A `not_found` error means it's outside the current
    corpus; a result means it's in.
 2. **A topic/area** → `search(query="<canonical terms for the topic>")` (see
-   `../regai-checking-current-law/reference/query-craft.md` for term craft).
+   `../regai-live-check/reference/query-craft.md` for term craft).
    - Substantive in-force hits → the area is covered; name it from the returned docs.
    - No hits, or only weak/expired/off-topic hits → likely **not** covered. Try one or
      two alternate canonical phrasings before concluding, then say it's not in the

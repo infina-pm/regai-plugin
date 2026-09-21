@@ -1,6 +1,6 @@
 ---
-name: regai-checking-current-law
-description: Use when the user asks anything about Vietnamese law — conditions/procedures for something ("điều kiện chào bán chứng khoán", "what do I need to issue shares?"), whether a document is still valid ("Nghị định 58/2012 còn hiệu lực không?", "is decree X still in force?"), which Nghị định/Thông tư implements a Luật, or to quote a specific Điều. Drives the regai retrieval tools and the cite-correctly research loop.
+name: regai-live-check
+description: Use when the user asks anything about Vietnamese law against the latest live data source — conditions/procedures for something ("điều kiện chào bán chứng khoán", "what do I need to issue shares?"), whether a document is still valid ("Nghị định 58/2012 còn hiệu lực không?", "is decree X still in force?"), which Nghị định/Thông tư implements a Luật, or to quote a specific Điều. Drives the regai retrieval tools and the cite-correctly research loop.
 ---
 
 # Researching Vietnamese Law with regai
@@ -9,7 +9,8 @@ description: Use when the user asks anything about Vietnamese law — conditions
 
 regai is a curated, LLM-free knowledge base of Vietnamese legal documents. **You**
 run the tools and synthesize a plain-language, correctly-cited answer; the user only
-asks the question. They never type a command.
+asks the question. They never type a command. This skill queries the **latest hosted
+data source** (the live MCP corpus), not the bundled vault snapshot.
 
 The corpus is curated and grows over time as documents are added from the remote, so
 **don't assume what it covers from memory.** If a document genuinely isn't found, it
