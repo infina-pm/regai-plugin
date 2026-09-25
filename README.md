@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="wordmark.png" alt="regai" width="420" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="wordmark-dark.svg" />
+    <img src="wordmark-light.svg" alt="regai" width="360" />
+  </picture>
 </p>
 
 # regai: your in-house Vietnamese legal consultant (Claude Code plugin)

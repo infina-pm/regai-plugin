@@ -1,7 +1,7 @@
 {
   "name": "regai",
   "displayName": "regai — Vietnamese Legal Consultant",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "Your in-house Vietnamese legal consultant in Claude Code. Answers are grounded in a curated, always-current corpus of Vietnamese law — with in-force status and related documents enforced on every answer, and every claim cited — instead of a general model's outdated, unsourced training data. Ships with workflows and templates for drafting, review, memos and compliance, and learns your industry and house style over time.",
   "author": {
     "name": "Infina Legal Tools"
