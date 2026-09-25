@@ -113,8 +113,9 @@ as the live skills.
 
 Use it when you have no network, or when the live tools are unavailable. If the MCP
 server cannot be reached, the other skills suggest switching to it instead of answering
-from memory. The snapshot is frozen at the plugin's release, so for the latest
-documents and statuses, prefer the live corpus.
+from memory. The snapshot is refreshed only occasionally, not on every corpus update,
+so it can lag behind the live corpus. New documents and status changes land
+in the live corpus first, so prefer the live tools whenever they are reachable.
 
 ## Troubleshooting
 
