@@ -10,7 +10,7 @@ description: Use when the user asks anything about Vietnamese law against the la
 regai is a curated, LLM-free knowledge base of Vietnamese legal documents. **You**
 run the tools and synthesize a plain-language, correctly-cited answer; the user only
 asks the question. They never type a command. This skill queries the **latest hosted
-data source** (the live MCP corpus), not the bundled vault snapshot.
+data source** (the live MCP corpus).
 
 The corpus is curated and grows over time as documents are added from the remote, so
 **don't assume what it covers from memory.** If a document genuinely isn't found, it
@@ -105,7 +105,5 @@ Always include **số hiệu + Điều number + tình trạng** (in force / expi
 ## When MCP is unavailable
 
 Call the `regai` MCP tools first. If they are missing from this session or a call
-cannot reach the corpus, tell the user the live source is unreachable and suggest
-they continue with the **regai-vault-search** skill (bundled vault snapshot,
-offline). Wait for them to confirm before switching. `/regai-doctor` can diagnose
-the connection.
+cannot reach the corpus, tell the user the live source is unreachable and do not
+answer from memory. `/regai-doctor` can diagnose the connection.

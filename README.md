@@ -5,7 +5,7 @@
   </picture>
 </p>
 
-# regai: your in-house Vietnamese legal consultant (Claude Code plugin)
+# Regai - Your in-house Vietnamese legal consultant
 
 Do Vietnamese legal work in plain language, with answers you can actually rely on.
 A general AI assistant answers from whatever it half-remembers from training, which is
@@ -40,7 +40,6 @@ Run `/regai-doctor` any time to confirm the connection works.
 | **`regai-listing-coverage`** | "Do you cover labour law?", "Is Nghị định 13/2023 in the corpus?" Checks coverage by probing the live corpus, never from memory. |
 | **`regai-shipping-goal`** | Multi-step legal goals carried to completion: plan, approve, execute, deliver. |
 | **`regai-onboard`** | A short interview that records your organization and house style, so every goal starts from your context. |
-| **`regai-vault-search`** | Offline research over a bundled snapshot of the corpus, with no network. Also the fallback when the live tools are unreachable. |
 | **`/regai-doctor`** | Checks that the MCP server is connected and the corpus answers. |
 
 You never have to name a skill. Ask in plain language and Claude picks the right one.
@@ -104,26 +103,12 @@ enterprise and civil law, labour, cybersecurity, electronic transactions, artifi
 intelligence, and the digital technology sector. Its scope changes, so ask Claude ("what do you cover?",
 "is labour law in regai?") and `regai-listing-coverage` checks the live corpus.
 
-## Working offline
-
-The plugin also bundles a snapshot of the corpus (about 1,000 documents in Markdown,
-under `skills/regai-vault-search/vault/`). The `regai-vault-search` skill researches it
-entirely on your machine with grep and file reads, using the same research discipline
-as the live skills.
-
-Use it when you have no network, or when the live tools are unavailable. If the MCP
-server cannot be reached, the other skills suggest switching to it instead of answering
-from memory. The snapshot is refreshed only occasionally, not on every corpus update,
-so it can lag behind the live corpus. New documents and status changes land
-in the live corpus first, so prefer the live tools whenever they are reachable.
-
 ## Troubleshooting
 
 - **The regai tools are missing.** Check that the plugin is enabled and that you
   approved the `regai` MCP server, then reload Claude Code.
 - **Tools time out or error.** Run `/regai-doctor`. It checks the hosted server at
   `https://psvpergdfbqzsagaacpz.supabase.co/functions/v1/mcp` and reports the error.
-  In the meantime, continue with `regai-vault-search`.
 
 ## Try it
 
